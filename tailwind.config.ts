@@ -1,7 +1,9 @@
 import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
-export default {
+import withMT from "@material-tailwind/react/utils/withMT";
+import theme, { fontFamily } from "tailwindcss/defaultTheme";
+
+export default withMT({
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
@@ -11,4 +13,7 @@ export default {
     },
   },
   plugins: [require("daisyui")],
-} satisfies Config;
+  daisyui: {
+    themes: ["light", "dark", "forest", "emerald", "corporate", "synthwave"],
+  },
+} satisfies Config) as Config;

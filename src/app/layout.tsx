@@ -1,6 +1,10 @@
 import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
+import Link from "next/link";
+import { locale } from "./locale";
+import { NavButton } from "./_components/navbutton";
+import { routes } from "./routes";
 
 export const metadata = {
   title: "Create T3 App",
@@ -8,14 +12,23 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${GeistSans.variable}`} data-theme="emerald">
+      <body>
+        {/* <main className="flex min-h-screen flex-col">{children}</main> */}
+        <main className="artboard flex h-screen flex-col ">
+          <nav className="navbar bg-base-100">
+            {Object.values(routes).map((el) => (
+              <NavButton key={el.href} href={"/" + el.href} name={el.title} />
+            ))}
+          </nav>
+
+          <div className="divider m-0" />
+
+          <div className="grow">{children}</div>
+        </main>
+      </body>
     </html>
   );
 }

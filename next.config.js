@@ -6,12 +6,21 @@ await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
 const config = {
-    typescript: {
-        ignoreBuildErrors: true
-    }    ,
-    eslint: {
-        ignoreDuringBuilds: true
-    }
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/bills",
+        permanent: true,
+      },
+    ];
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default config;
